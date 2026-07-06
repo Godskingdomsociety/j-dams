@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #1E3A8A;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #3B82F6;
+  --color-accent: #A16207;
+  --color-background: #F8FAFC;
+  --color-foreground: #1E40AF;
+  --color-muted: #E9EEF5;
+  --color-border: #BFDBFE;
+  --color-destructive: #DC2626;
+  --color-ring: #1E3A8A;
+  --font-heading: 'Bodoni Moda', serif;
+  --font-sans: 'Jost', sans-serif;
+}
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0F172A;
+    --foreground: #F1F5F9;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Jost', sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
