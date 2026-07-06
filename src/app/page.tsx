@@ -144,7 +144,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-sm font-medium">Phone</p>
-                    <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-sm text-muted-foreground">+234 916 768 2920</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">

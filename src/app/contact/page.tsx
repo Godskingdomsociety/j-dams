@@ -2,7 +2,7 @@ import { ContactForm } from "@/components/home/contact-form"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
 
 const contactDetails = [
-  { icon: Phone, title: "Phone", details: ["+1 (555) 123-4567", "+1 (555) 987-6543"] },
+  { icon: Phone, title: "Phone", details: ["+234 916 768 2920"] },
   { icon: Mail, title: "Email", details: ["reservations@j-dams.com", "concierge@j-dams.com"] },
   { icon: MapPin, title: "Address", details: ["123 Luxury Avenue", "Premium District, NY 10001"] },
   { icon: Clock, title: "Front Desk", details: ["24/7 Concierge Service", "Check-in: 3PM | Check-out: 11AM"] },

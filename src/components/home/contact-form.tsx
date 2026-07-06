@@ -2,14 +2,63 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Send } from "lucide-react"
+import { Send, ExternalLink } from "lucide-react"
+
+const WHATSAPP_NUMBER = "2349167682920"
+
+function formatTimestamp() {
+  return new Intl.DateTimeFormat("en-NG", {
+    dateStyle: "full",
+    timeStyle: "short",
+  }).format(new Date())
+}
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
+    const whatsappMessage = [
+      "*New Contact Message — J-Dams Luxury Apartment Hotel*",
+      "",
+      `*Name:* ${name}`,
+      `*Email:* ${email}`,
+      "",
+      "*Message:*",
+      message,
+      "",
+      `Submitted: ${formatTimestamp()}`,
+    ].join("\n")
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`,
+      "_blank"
+    )
+
     setSubmitted(true)
+  }
+
+  function handleResend() {
+    const whatsappMessage = [
+      "*New Contact Message — J-Dams Luxury Apartment Hotel*",
+      "",
+      `*Name:* ${name}`,
+      `*Email:* ${email}`,
+      "",
+      "*Message:*",
+      message,
+      "",
+      `Submitted: ${formatTimestamp()}`,
+    ].join("\n")
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`,
+      "_blank"
+    )
   }
 
   if (submitted) {
@@ -19,7 +68,13 @@ export function ContactForm() {
           <Send size={28} className="text-accent" />
         </div>
         <h3 className="text-xl font-bold text-primary font-heading mb-2">Thank You</h3>
-        <p className="text-muted-foreground">We&apos;ll get back to you within 24 hours.</p>
+        <p className="text-muted-foreground mb-4">
+          Your message has been sent via WhatsApp. We&apos;ll get back to you within 24 hours.
+        </p>
+        <Button variant="outline" size="sm" onClick={handleResend}>
+          <ExternalLink size={14} />
+          Resend via WhatsApp
+        </Button>
       </div>
     )
   }
@@ -34,6 +89,8 @@ export function ContactForm() {
           <input
             id="name"
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
             className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-200"
             placeholder="John Doe"
@@ -46,6 +103,8 @@ export function ContactForm() {
           <input
             id="email"
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-200"
             placeholder="john@example.com"
@@ -58,6 +117,8 @@ export function ContactForm() {
         </label>
         <textarea
           id="message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           required
           rows={5}
           className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-200 resize-none"
@@ -65,8 +126,8 @@ export function ContactForm() {
         />
       </div>
       <Button type="submit" size="lg" className="w-full sm:w-auto">
-        <Send size={16} />
-        Send Message
+        <ExternalLink size={16} />
+        Send via WhatsApp
       </Button>
     </form>
   )
